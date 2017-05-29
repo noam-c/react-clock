@@ -18,6 +18,33 @@ import React from 'react';
 // https://stackoverflow.com/a/11444416
 let Component = React.Component;
 
+// "const" is also a new ES6 keyword used to denote variables that will not
+// change. If you expect something to never change, and it changes anyway,
+// you'll be able to use an error to track that down.
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
+
+const DAYS_IN_WEEK = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday'
+];
+
 /*
  * Below is an ES6 class. The outcome is similar to creating a function and
  * setting its 'prototype', but this is a lot easier to work with and read,
@@ -46,8 +73,9 @@ class App extends Component {
   getDateTime() {
     let now = new Date();
     let year = now.getFullYear();
-    let month = now.getMonth();
+    let month = MONTHS[now.getMonth() - 1];
     let day = now.getDate();
+    let dayOfWeek = DAYS_IN_WEEK[now.getDay()];
 
     let hours = now.getHours();
     let minutes = now.getMinutes();
@@ -55,7 +83,10 @@ class App extends Component {
 
     // The state will be an object that holds the current date and time.
     return {
-      date: `${day}/${month}/${year}`,
+      // ES6 introduces string interpolation, which allows you to build strings
+      // out of variables without having to + them together (which often looks
+      // messier).
+      date: `${dayOfWeek}, ${month} ${day}, ${year}`,
       time: [hours, minutes, seconds].join(':')
     };
   }
@@ -98,7 +129,16 @@ class App extends Component {
         this.state.time
       )
     );
+
+    // So, once we've returned this, we've created HTML, right?
+    // That's now on the page, right?
+    // Not quite. We're returning a "virtual DOM", which is a way of expressing
+    // the HTML that we *want*. React will compare it to the actual HTML on the
+    // page, and it will make surgical changes to make the HTML into what we
+    // want it to be. This is work that React does for you behind the scenes.
   }
 }
 
+// This states that if anyone requires this module, the thing that they will
+// receive from it is the App class that we've created.
 export default App;
