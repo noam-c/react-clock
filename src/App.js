@@ -79,7 +79,15 @@ class App extends Component {
 
     let hours = now.getHours();
     let minutes = now.getMinutes();
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+
     let seconds = now.getSeconds();
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+
 
     // The state will be an object that holds the current date and time.
     return {
@@ -136,6 +144,27 @@ class App extends Component {
     // the HTML that we *want*. React will compare it to the actual HTML on the
     // page, and it will make surgical changes to make the HTML into what we
     // want it to be. This is work that React does for you behind the scenes.
+  }
+
+  componentDidMount() {
+    // So, above we told React what HTML we want. Once React makes it so, this
+    // component is 'mounted' in the real HTML tree. This is a great time to
+    // start our timer.
+    this.intervalId = setInterval(() => {
+        // Sets the component's state, and signals React to call 'render' again
+        // to refresh the HTML with the new state of the world.
+        this.setState(this.getDateTime());
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    // React can also remove this component from the HTML (this happens when a
+    // component that contains this one decides that it's no longer necessary
+    // to include it in the HTML), then that's a great time to delete our
+    // timer.
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 }
 
