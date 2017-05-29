@@ -7,9 +7,10 @@
  * check out the branch 'es6-version'.
  */
 
-// JS require fulfills the same function as Ruby's require. The module's export
-// (in this case, the class exported by the 'react' module) is stored in a
-// variable called React for our usage.
+// JS import fulfills the same function as Ruby's require. The module's export
+// // is stored in a variable called React for our usage. The module is called
+// // 'react' and is a third-party package specified in our package.json (similar
+// // to a gem in a Gemfile).
 var React = require('react');
 
 // Let's also require the ReactDOM module for rendering our React component to
@@ -162,4 +163,7 @@ var App = createReactClass({
   }
 });
 
+// Find the <div id="root"> element and inject our App component into it.
+// This implies that the contents of this div are now controlled by React,
+// and shouldn't be further manipulated by us (e.g. using jQuery).
 ReactDOM.render(<App />, document.getElementById('root'));
