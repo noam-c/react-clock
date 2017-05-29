@@ -8,8 +8,9 @@
  */
 
 // JS import fulfills the same function as Ruby's require. The module's export
-// (in this case, the class exported by the 'react' module) is stored in a
-// variable called React for our usage.
+// is stored in a variable called React for our usage. The module is called
+// 'react' and is a third-party package specified in our package.json (similar
+// to a gem in a Gemfile).
 import React from 'react';
 
 // ES6 introduces "let" for declaring variables.
