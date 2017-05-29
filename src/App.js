@@ -79,7 +79,15 @@ class App extends Component {
 
     let hours = now.getHours();
     let minutes = now.getMinutes();
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+
     let seconds = now.getSeconds();
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+
 
     // The state will be an object that holds the current date and time.
     return {
