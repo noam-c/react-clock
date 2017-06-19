@@ -9,3 +9,11 @@ uses (but explains!) ES6-only language features. To see how this looks without
 any ES6 language features, jump on over to the `master` branch!
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+## Running the App
+
+To run the app, clone the repo locally and then run:
+1. `npm install`
+2. `npm start`
+
+The second step will set up a server and automatically open a browser tab to it.
